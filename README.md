@@ -72,3 +72,69 @@ rggb = cat(3, red, green, blue);
 figure;
 imshow(min(1, rggb*5))
 ```
+When comparing these two images, the RGGB seemingly conveys more accurate portrait of hues than that of BGGR. 
+
+## White balancing
+
+When white balancing in gray world, 
+```
+% gray
+mean_red = mean(mean(rggb(:,:,1)));
+mean_green = mean(mean(rggb(:,:,2)));
+mean_blue = mean(mean(rggb(:,:,3)));
+gray_red = rggb(:,:,1) * mean_green / mean_red;
+gray_green = rggb(:,:,2);
+gray_blue = rggb(:,:,3) * mean_green / mean_blue;
+gray_balanced_img = cat(3, gray_red, gray_green, gray_blue);
+figure;
+imshow(gray_balanced_img)
+```
+
+%% Demosaicing
+
+```
+demosaic_red = interp2(white_balanced_img(:,:,1));
+demosaic_green = interp2(white_balanced_img(:,:,2));
+demosaic_blue = interp2(white_balanced_img(:,:,3));
+demosaic_img = cat(3, demosaic_red, demosaic_green, demosaic_blue);
+figure;
+imshow(demosaic_img)
+```
+
+%%Brightness Adjustment and Gamma Correction
+
+```
+prebrightened_img = demosaic_img * 4;
+
+grayscale_img = rgb2gray(prebrightened_img);
+grayscale_img = rgb2gray(prebrightened_img);
+if grayscale_img < 0.0031308
+    gamma_corrected_img = 12.92 * prebrightened_img;
+else 
+    gamma_corrected_img = (1 + 0.055) * prebrightened_img.^(1/2.4) - 0.055;
+end
+figure;
+imshow(gamma_corrected_img)
+```
+
+%% Compression
+
+```
+imwrite(gamma_corrected_img, 'final_result.png');
+imwrite(gamma_corrected_img, 'final_result.jpeg', 'quality', 15);
+```
+
+
+```
+% white
+max_red = max(max(rggb(:,:,1)));
+max_green = max(max(rggb(:,:,2)));
+max_blue = max(max(rggb(:,:,3)));
+white_red = rggb(:,:,1) * max_green / max_red;
+white_green = rggb(:,:,2);
+white_blue = rggb(:,:,3) * max_green / max_blue;
+white_balanced_img = cat(3, white_red, white_green, white_blue);
+figure;
+imshow(white_balanced_img)
+
+```
