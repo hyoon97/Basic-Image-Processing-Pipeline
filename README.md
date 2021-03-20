@@ -90,8 +90,24 @@ figure;
 imshow(gray_balanced_img)
 ```
 
-%% Demosaicing
 
+```
+% white
+max_red = max(max(rggb(:,:,1)));
+max_green = max(max(rggb(:,:,2)));
+max_blue = max(max(rggb(:,:,3)));
+white_red = rggb(:,:,1) * max_green / max_red;
+white_green = rggb(:,:,2);
+white_blue = rggb(:,:,3) * max_green / max_blue;
+white_balanced_img = cat(3, white_red, white_green, white_blue);
+figure;
+imshow(white_balanced_img)
+
+```
+
+## Demosaicing
+
+Using <code>interp2</code>, bilinear interpolation is performed for demosaicing the white balanced image. 
 ```
 demosaic_red = interp2(white_balanced_img(:,:,1));
 demosaic_green = interp2(white_balanced_img(:,:,2));
@@ -101,7 +117,8 @@ figure;
 imshow(demosaic_img)
 ```
 
-%% Brightness Adjustment and Gamma Correction
+## Brightness Adjustment and Gamma Correction
+
 
 ```
 prebrightened_img = demosaic_img * 4;
@@ -117,24 +134,10 @@ figure;
 imshow(gamma_corrected_img)
 ```
 
-%% Compression
+## Compression
 
 ```
 imwrite(gamma_corrected_img, 'final_result.png');
 imwrite(gamma_corrected_img, 'final_result.jpeg', 'quality', 15);
 ```
 
-
-```
-% white
-max_red = max(max(rggb(:,:,1)));
-max_green = max(max(rggb(:,:,2)));
-max_blue = max(max(rggb(:,:,3)));
-white_red = rggb(:,:,1) * max_green / max_red;
-white_green = rggb(:,:,2);
-white_blue = rggb(:,:,3) * max_green / max_blue;
-white_balanced_img = cat(3, white_red, white_green, white_blue);
-figure;
-imshow(white_balanced_img)
-
-```
