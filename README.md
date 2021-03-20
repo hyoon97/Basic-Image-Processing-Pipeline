@@ -101,7 +101,7 @@ figure;
 imshow(demosaic_img)
 ```
 
-%%Brightness Adjustment and Gamma Correction
+%% Brightness Adjustment and Gamma Correction
 
 ```
 prebrightened_img = demosaic_img * 4;
