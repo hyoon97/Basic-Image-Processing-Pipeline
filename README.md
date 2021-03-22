@@ -203,35 +203,43 @@ imwrite(gamma_corrected_img, 'final_result_10.jpeg', 'quality', 10);
 imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 ```
 
+The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color. Hence, the quality of the image visibily drops when compressed significantly.
+
 <table>
     <tr>
         <th>png image</th>
         <th>quality 95 jpeg image</th>
-        <th>quality 65 jpeg image</th>
-        <th>quality 55 jpeg image</th>
-        <th>quality 45 jpeg image</th>
+        <th>quality 85 jpeg image</th>
+        <th>quality 75 jpeg image</th>
     </tr>
     <tr>
         <td><img src='./img/final_result.png'></td>
         <td><img src='./img/final_result_95.jpeg'></td>
-        <td><img src='./img/final_result_65.jpeg'></td>
-        <td><img src='./img/final_result_55.jpeg'></td>
-        <td><img src='./img/final_result_45.jpeg'></td>
+        <td><img src='./img/final_result_85.jpeg'></td>
+        <td><img src='./img/final_result_75.jpeg'></td>
     </tr>
     <tr>
-        <th>png image</th>
+        <th>quality 65 jpeg image</th>
+        <th>quality 55 jpeg image</th>
+        <th>quality 45 jpeg image</th>
         <th>quality 35 jpeg image</th>
+    </tr>
+    <tr>
+        <td><img src='./img/final_result_85.jpeg'></td>
+        <td><img src='./img/final_result_75.jpeg'></td>
+        <td><img src='./img/final_result_45.jpeg'></td>
+        <td><img src='./img/final_result_35.jpeg'></td>
+    </tr>
+    <tr>
         <th>quality 25 jpeg image</th>
         <th>quality 15 jpeg image</th>
         <th>quality 10 jpeg image</th>
         <th>quality 5 jpeg image</th>
     </tr>
     <tr>
-        <td><img src='./img/final_result_35.jpeg'></td>
         <td><img src='./img/final_result_25.jpeg'></td>
         <td><img src='./img/final_result_15.jpeg'></td>
         <td><img src='./img/final_result_10.jpeg'></td>
         <td><img src='./img/final_result_5.jpeg'></td>
-
     </tr>
 </table>
