@@ -1,6 +1,4 @@
-# Basic Image Processing Pipeline
-
-This project aims to recover original image from '.tiff' via basic image processing pipeline
+This project aims to recover original image from '.tiff' via basic image processing pipeline.   
 
 ## Initials
 
