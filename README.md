@@ -189,7 +189,6 @@ end
 ```
 imwrite(gamma_corrected_img, 'final_result.png');
 imwrite(gamma_corrected_img, 'final_result_95.jpeg', 'quality', 95);
-imwrite(gamma_corrected_img, 'final_result_85.jpeg', 'quality', 85);
 imwrite(gamma_corrected_img, 'final_result_75.jpeg', 'quality', 75);
 imwrite(gamma_corrected_img, 'final_result_65.jpeg', 'quality', 65);
 imwrite(gamma_corrected_img, 'final_result_55.jpeg', 'quality', 55);
@@ -197,6 +196,39 @@ imwrite(gamma_corrected_img, 'final_result_45.jpeg', 'quality', 45);
 imwrite(gamma_corrected_img, 'final_result_35.jpeg', 'quality', 35);
 imwrite(gamma_corrected_img, 'final_result_25.jpeg', 'quality', 25);
 imwrite(gamma_corrected_img, 'final_result_15.jpeg', 'quality', 15);
+imwrite(gamma_corrected_img, 'final_result_10.jpeg', 'quality', 10);
 imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 ```
 
+<table>
+    <tr>
+        <th>png image</th>
+        <th>quality 95 jpeg image</th>
+        <th>quality 65 jpeg image</th>
+        <th>quality 55 jpeg image</th>
+        <th>quality 45 jpeg image</th>
+    </tr>
+    <tr>
+        <td><img src='./img/final_result.png'></td>
+        <td><img src='./img/final_result_95.png'></td>
+        <td><img src='./img/final_result_65.png'></td>
+        <td><img src='./img/final_result_55.png'></td>
+        <td><img src='./img/final_result_45.png'></td>
+    </tr>
+    <tr>
+        <th>png image</th>
+        <th>quality 35 jpeg image</th>
+        <th>quality 25 jpeg image</th>
+        <th>quality 15 jpeg image</th>
+        <th>quality 10 jpeg image</th>
+        <th>quality 5 jpeg image</th>
+    </tr>
+    <tr>
+        <td><img src='./img/final_result_35.png'></td>
+        <td><img src='./img/final_result_25.png'></td>
+        <td><img src='./img/final_result_15.png'></td>
+        <td><img src='./img/final_result_10.png'></td>
+        <td><img src='./img/final_result_5.png'></td>
+
+    </tr>
+</table>
