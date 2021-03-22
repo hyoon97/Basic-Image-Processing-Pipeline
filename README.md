@@ -29,6 +29,19 @@ figure;
 imshow(min(1, linearized_tiff*5));
 ```
 
+The following imags show result of linearization. The right image is brightened by 5 times the left one to vividly show the effect of linearization.
+
+<table>
+    <tr>
+        <th>Linearization</th>
+        <th>Linearization * 5</th>
+    </tr>
+    <tr>
+        <td><img src='./img/linearized.png'></td>
+        <td><img src='./image/linearized_5.png'></td>
+    </tr>
+</table>
+
 ## Identifying the correct bayer pattern
 
 In order to identify the correct bayer pattern, one must discover the correct position of the green pixels. In any patch, there are two green cells. As a result, the result of difference between two green cells should be minimum. Therefore, each position of cells are grouped as patches, and patches are subtracted by each other in order to find two patches resulting minimum difference.
@@ -109,9 +122,9 @@ imshow(white_balanced_img)
 
 Using <code>interp2</code>, bilinear interpolation is performed for demosaicing the white balanced image. 
 ```
-demosaic_red = interp2(white_balanced_img(:,:,1));
-demosaic_green = interp2(white_balanced_img(:,:,2));
-demosaic_blue = interp2(white_balanced_img(:,:,3));
+demosaic_red = interp2(gray_balanced_img(:,:,1));
+demosaic_green = interp2(gray_balanced_img(:,:,2));
+demosaic_blue = interp2(gray_balanced_img(:,:,3));
 demosaic_img = cat(3, demosaic_red, demosaic_green, demosaic_blue);
 figure;
 imshow(demosaic_img)
