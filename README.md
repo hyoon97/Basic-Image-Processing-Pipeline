@@ -124,7 +124,6 @@ imshow(demosaic_img)
 prebrightened_img = demosaic_img * 4;
 
 grayscale_img = rgb2gray(prebrightened_img);
-grayscale_img = rgb2gray(prebrightened_img);
 if grayscale_img < 0.0031308
     gamma_corrected_img = 12.92 * prebrightened_img;
 else 
