@@ -2,21 +2,27 @@ This project aims to recover original image from '.tiff' via basic image process
 
 ## Initials
 
-The following code read the input image using <code>imread</code> and output the size of the image using <code>size</code>
+The following code read the input image using <code>imread</code> and output the size of the image using <code>size</code>. Originally, data type of pixels in the images are <code>uint16</code>, which needs to be coverted to <code>double</code> for linearization to take place.
 
 ```matlab
 tiff = imread('.\data\banana_slug.tiff');
+tiff_class = class(tiff);
 tiff_size = size(tiff);
+tiff_double = double(tiff);
 ```
+
+After initiating this block of code, it is found that each pixel consists of **16** bits per integer.    
+The width of this image is **4290**.    
+The height of this image is **2856**.
+
 
 ## Linearization 
 
 Linearization of the image is done by normalizing pixel values of the image while removing overexposed and supposedly black pixels.
 
-Originally, data type of pixels in the images are <code>uint16</code>, which needs to be coverted to <code>double</code> for linearization to take place. Since any pixel with values under 2047 and over 15000 are 0 and 1, respectively, the acceptable pixels have values in between 2047 and 12953. Hence, pixels are normalized with possible maximum value, which is 12953. After normalization, pixels with values greater than 1 are forcefully set as 1 while pixels with negative values are set as 0.
+Since any pixel with values under 2047 and over 15000 are 0 and 1, respectively, the acceptable pixels have values in between 2047 and 12953. Hence, pixels are normalized with possible maximum value, which is 12953. After normalization, pixels with values greater than 1 are forcefully set as 1 while pixels with negative values are set as 0.
 
 ```matlab
-tiff_double = double(tiff);
 pixel_max = 15000;
 pixel_min = 2047;
 
