@@ -203,7 +203,9 @@ imwrite(gamma_corrected_img, 'final_result_10.jpeg', 'quality', 10);
 imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 ```
 
-The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color. 
+The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color.   
+    
+The file compression ratio is calculated by divideing the compressed image size (.png) by the uncompressed image size (.jpeg)
 
 <table>
     <tr>
@@ -213,10 +215,10 @@ The following images shows that it hard to differentiate between the uncompresse
         <th>quality 75% jpeg image</th>
     </tr>
     <tr>
-        <td>size = **17039693**</td>
-        <td><size = **3421555**></td>
-        <td><size = **1759171**></td>
-        <td><size = **1264228**></td>
+        <td>size = 17039693 bytes</td>
+        <td><size = 3421555 bytes (compresssion ratio: 0.2008)</td>
+        <td><size = 1759171 bytes (compresssion ratio: 0.1032)</td>
+        <td><size = 1264228 bytes (compresssion ratio: 0.0742)</td>
     </tr>
     <tr>
         <td><img src='./img/final_result.png'></td>
@@ -231,6 +233,12 @@ The following images shows that it hard to differentiate between the uncompresse
         <th>quality 35% jpeg image</th>
     </tr>
     <tr>
+        <td>size = 1032756 bytes (compresssion ratio: 0.606)</td>
+        <td><size = 877081 bytes (compresssion ratio: 0.0515)</td>
+        <td><size = 772934 bytes (compresssion ratio: 0.0454)</td>
+        <td><size = 663712 bytes (compresssion ratio: 0.0390)</td>
+    </tr>
+    <tr>
         <td><img src='./img/final_result_85.jpeg'></td>
         <td><img src='./img/final_result_75.jpeg'></td>
         <td><img src='./img/final_result_45.jpeg'></td>
@@ -243,15 +251,16 @@ The following images shows that it hard to differentiate between the uncompresse
         <th>quality 5% jpeg image</th>
     </tr>
     <tr>
+        <td>size = 542660 bytes (compresssion ratio: 0.0318)</td>
+        <td><size = 411660 bytes (compresssion ratio: 0.0242)</td>
+        <td><size = 337987 bytes (compresssion ratio: 0.0198)</td>
+        <td><size = 256770 bytes (compresssion ratio: 0.0151)</td>
+    </tr>
+    <tr>
         <td><img src='./img/final_result_25.jpeg'></td>
         <td><img src='./img/final_result_15.jpeg'></td>
         <td><img src='./img/final_result_10.jpeg'></td>
         <td><img src='./img/final_result_5.jpeg'></td>
     </tr>
 </table>
-
-The file size of the uncompressed image (.png) is 17039693.   
-The file size of the compressed image (.jpeg) is 8232450.   
-    
-The compression ratio is **8232450 / 17039693 = 0.483133704345495**
 
