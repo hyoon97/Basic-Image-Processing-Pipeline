@@ -244,8 +244,8 @@ The following images shows that it hard to differentiate between the uncompresse
     </tr>
 </table>
 
-The file size of the uncompressed image (.png) is 17039693
-The file size of the compressed image (.jpeg) is 8232450
-
+The file size of the uncompressed image (.png) is 17039693.   
+The file size of the compressed image (.jpeg) is 8232450.   
+    
 The compression ratio is **8232450 / 17039693 = 0.483133704345495**
 
