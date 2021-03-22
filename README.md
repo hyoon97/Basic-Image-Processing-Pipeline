@@ -187,6 +187,8 @@ end
 
 ## Compression
 
+The follwing code saves the processed image in png or jpeg format. When saving in jpeg format, one can specify the quality of image to be saved by simply adding the parameter <code>'quality'</code> followed by the number.
+
 ```matlab
 imwrite(gamma_corrected_img, 'final_result.png');
 imwrite(gamma_corrected_img, 'final_result_95.jpeg', 'quality', 95);
@@ -211,10 +213,10 @@ imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
     </tr>
     <tr>
         <td><img src='./img/final_result.png'></td>
-        <td><img src='./img/final_result_95.png'></td>
-        <td><img src='./img/final_result_65.png'></td>
-        <td><img src='./img/final_result_55.png'></td>
-        <td><img src='./img/final_result_45.png'></td>
+        <td><img src='./img/final_result_95.jpeg'></td>
+        <td><img src='./img/final_result_65.jpeg'></td>
+        <td><img src='./img/final_result_55.jpeg'></td>
+        <td><img src='./img/final_result_45.jpeg'></td>
     </tr>
     <tr>
         <th>png image</th>
@@ -225,11 +227,11 @@ imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
         <th>quality 5 jpeg image</th>
     </tr>
     <tr>
-        <td><img src='./img/final_result_35.png'></td>
-        <td><img src='./img/final_result_25.png'></td>
-        <td><img src='./img/final_result_15.png'></td>
-        <td><img src='./img/final_result_10.png'></td>
-        <td><img src='./img/final_result_5.png'></td>
+        <td><img src='./img/final_result_35.jpeg'></td>
+        <td><img src='./img/final_result_25.jpeg'></td>
+        <td><img src='./img/final_result_15.jpeg'></td>
+        <td><img src='./img/final_result_10.jpeg'></td>
+        <td><img src='./img/final_result_5.jpeg'></td>
 
     </tr>
 </table>
