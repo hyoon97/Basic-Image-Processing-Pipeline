@@ -24,9 +24,6 @@ pixel_min = 2047;
 linearized_tiff = tiff_double / (pixel_max - pixel_min) - pixel_min / (pixel_max - pixel_min);
 linearized_tiff(linearized_tiff > 1) = 1;
 linearized_tiff(linearized_tiff < 0) = 0;
-
-figure;
-imshow(min(1, linearized_tiff*5));
 ```
 
 The following imags show result of linearization. The right image is brightened by 5 times the left one to vividly show the effect of linearization.
@@ -45,6 +42,15 @@ The following imags show result of linearization. The right image is brightened 
 ## Identifying the correct bayer pattern
 
 In order to identify the correct bayer pattern, one must discover the correct position of the green pixels. In any patch, there are two green cells. As a result, the result of difference between two green cells should be minimum. Therefore, each position of cells are grouped as patches, and patches are subtracted by each other in order to find two patches resulting minimum difference.
+
+<table>
+    <tr>
+        <th>bayer pattern</th>
+    </tr>
+    <tr>
+        <td><img src='./img/bayer_pattern.png'></td>
+    </tr>
+</table>
 
 ```
 patch1 = linearized_tiff(1:2:end, 1:2:end);
@@ -68,28 +74,26 @@ sum_3_4 = sum(difference_3_4(:));
 ```
 
 The result shows that the difference between patch2 and patch3 is the smallest. As a result, the remaining possible bayer patterns are RGGB and BGGR. In choose between these two pattern, the results after applying each pattern are compared. 
-```
+
+```matlab
 % bggr
 red = patch4;
 green = (patch2 + patch3) / 2;
 blue = patch1;
 bggr = cat(3, red, green, blue);
-figure;
-imshow(min(1, bggr*5))
 
 % rggb
 red = patch1;
 green = (patch2 + patch3) / 2;
 blue = patch4;
 rggb = cat(3, red, green, blue);
-figure;
-imshow(min(1, rggb*5))
 ```
+
 When comparing these two images, the RGGB seemingly conveys more accurate portrait of hues than that of BGGR. 
 
 <table>
     <tr>
-        <thbggr</th>
+        <th>bggr</th>
         <th>rggb</th>
     </tr>
     <tr>
@@ -101,6 +105,7 @@ When comparing these two images, the RGGB seemingly conveys more accurate portra
 ## White balancing
 
 When white balancing in gray world, 
+
 ```
 % gray
 mean_red = mean(mean(rggb(:,:,1)));
@@ -110,8 +115,6 @@ gray_red = rggb(:,:,1) * mean_green / mean_red;
 gray_green = rggb(:,:,2);
 gray_blue = rggb(:,:,3) * mean_green / mean_blue;
 gray_balanced_img = cat(3, gray_red, gray_green, gray_blue);
-figure;
-imshow(gray_balanced_img)
 ```
 
 
@@ -124,25 +127,42 @@ white_red = rggb(:,:,1) * max_green / max_red;
 white_green = rggb(:,:,2);
 white_blue = rggb(:,:,3) * max_green / max_blue;
 white_balanced_img = cat(3, white_red, white_green, white_blue);
-figure;
-imshow(white_balanced_img)
-
 ```
+
+The following images shows the result of white balancing the image in gray and white world. When white balancing in white world, the color contrast is more clear than that of gray world. Since the colors are more balanced in gray world, the later procedures will be done using the gray world image. 
+
+<table>
+    <tr>
+        <th>gray world</th>
+        <th>white world</th>
+    </tr>
+    <tr>
+        <td><img src='./img/gray_balanced.png'></td>
+        <td><img src='./img/white_balanced.png'></td>
+    </tr>
+</table>
 
 ## Demosaicing
 
 Using <code>interp2</code>, bilinear interpolation is performed for demosaicing the white balanced image. 
+
 ```
 demosaic_red = interp2(gray_balanced_img(:,:,1));
 demosaic_green = interp2(gray_balanced_img(:,:,2));
 demosaic_blue = interp2(gray_balanced_img(:,:,3));
 demosaic_img = cat(3, demosaic_red, demosaic_green, demosaic_blue);
-figure;
-imshow(demosaic_img)
 ```
 
-## Brightness Adjustment and Gamma Correction
+<table>
+    <tr>
+        <th>demosaiced image</th>
+    </tr>
+    <tr>
+        <td><img src='./img/demosaic.png'></td>
+    </tr>
+</table>
 
+## Brightness Adjustment and Gamma Correction
 
 ```
 prebrightened_img = demosaic_img * 4;
@@ -153,14 +173,30 @@ if grayscale_img < 0.0031308
 else 
     gamma_corrected_img = (1 + 0.055) * prebrightened_img.^(1/2.4) - 0.055;
 end
-figure;
-imshow(gamma_corrected_img)
 ```
+
+<table>
+    <tr>
+        <th>gamma corrected image</th>
+    </tr>
+    <tr>
+        <td><img src='./img/gamma_corrected.png'></td>
+    </tr>
+</table>
 
 ## Compression
 
 ```
 imwrite(gamma_corrected_img, 'final_result.png');
-imwrite(gamma_corrected_img, 'final_result.jpeg', 'quality', 15);
+imwrite(gamma_corrected_img, 'final_result_95.jpeg', 'quality', 95);
+imwrite(gamma_corrected_img, 'final_result_85.jpeg', 'quality', 85);
+imwrite(gamma_corrected_img, 'final_result_75.jpeg', 'quality', 75);
+imwrite(gamma_corrected_img, 'final_result_65.jpeg', 'quality', 65);
+imwrite(gamma_corrected_img, 'final_result_55.jpeg', 'quality', 55);
+imwrite(gamma_corrected_img, 'final_result_45.jpeg', 'quality', 45);
+imwrite(gamma_corrected_img, 'final_result_35.jpeg', 'quality', 35);
+imwrite(gamma_corrected_img, 'final_result_25.jpeg', 'quality', 25);
+imwrite(gamma_corrected_img, 'final_result_15.jpeg', 'quality', 15);
+imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 ```
 
