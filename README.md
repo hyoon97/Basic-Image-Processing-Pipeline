@@ -165,6 +165,8 @@ demosaic_img = cat(3, demosaic_red, demosaic_green, demosaic_blue);
 
 ## Brightness Adjustment and Gamma Correction
 
+Before performing gamma correction, the overall brightness of image is enhanced. The intensity of each pixel in the image are enhanced by 4 times. With some extra trials, it is found that some enhancement over 4 can cause overexposure while some under 4 can cause few dark pixels.
+
 ```matlab
 prebrightened_img = demosaic_img * 4;
 
