@@ -105,7 +105,7 @@ When comparing these two images, the RGGB seemingly conveys more accurate portra
 
 ## White balancing
 
-When white balancing in gray world, 
+After applying bayer pattern on the image, white balancing must be done, because green channel is visually much stronger than the other channels. 
 
 ```matlab
 % gray
@@ -130,7 +130,7 @@ white_blue = rggb(:,:,3) * max_green / max_blue;
 white_balanced_img = cat(3, white_red, white_green, white_blue);
 ```
 
-The following images shows the result of white balancing the image in gray and white world. When white balancing in white world, the color contrast is more clear than that of gray world. Since the colors are more balanced in gray world, the later procedures will be done using the gray world image. 
+The following images shows the result of white balancing the image in gray and white world automatic white balancing. When white balancing in white world, the color contrast is more clear than that of gray world. Since the colors are more balanced in gray world, the later procedures will be done using the gray world image. 
 
 <table>
     <tr>
@@ -203,14 +203,14 @@ imwrite(gamma_corrected_img, 'final_result_10.jpeg', 'quality', 10);
 imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 ```
 
-The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color. Hence, the quality of the image visibily drops when compressed significantly.
+The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color. 
 
 <table>
     <tr>
         <th>png image</th>
-        <th>quality 95 jpeg image</th>
-        <th>quality 85 jpeg image</th>
-        <th>quality 75 jpeg image</th>
+        <th>quality 95% jpeg image</th>
+        <th>quality 85% jpeg image</th>
+        <th>quality 75% jpeg image</th>
     </tr>
     <tr>
         <td><img src='./img/final_result.png'></td>
@@ -219,10 +219,10 @@ The following images shows that it hard to differentiate between the uncompresse
         <td><img src='./img/final_result_75.jpeg'></td>
     </tr>
     <tr>
-        <th>quality 65 jpeg image</th>
-        <th>quality 55 jpeg image</th>
-        <th>quality 45 jpeg image</th>
-        <th>quality 35 jpeg image</th>
+        <th>quality 65% jpeg image</th>
+        <th>quality 55% jpeg image</th>
+        <th>quality 45% jpeg image</th>
+        <th>quality 35% jpeg image</th>
     </tr>
     <tr>
         <td><img src='./img/final_result_85.jpeg'></td>
@@ -231,10 +231,10 @@ The following images shows that it hard to differentiate between the uncompresse
         <td><img src='./img/final_result_35.jpeg'></td>
     </tr>
     <tr>
-        <th>quality 25 jpeg image</th>
-        <th>quality 15 jpeg image</th>
-        <th>quality 10 jpeg image</th>
-        <th>quality 5 jpeg image</th>
+        <th>quality 25% jpeg image</th>
+        <th>quality 15% jpeg image</th>
+        <th>quality 10% jpeg image</th>
+        <th>quality 5% jpeg image</th>
     </tr>
     <tr>
         <td><img src='./img/final_result_25.jpeg'></td>
@@ -243,3 +243,9 @@ The following images shows that it hard to differentiate between the uncompresse
         <td><img src='./img/final_result_5.jpeg'></td>
     </tr>
 </table>
+
+The file size of the uncompressed image (.png) is 17039693
+The file size of the compressed image (.jpeg) is 8232450
+
+The compression ratio is **8232450 / 17039693 = 0.483133704345495**
+
