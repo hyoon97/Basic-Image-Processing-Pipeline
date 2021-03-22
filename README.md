@@ -213,6 +213,12 @@ The following images shows that it hard to differentiate between the uncompresse
         <th>quality 75% jpeg image</th>
     </tr>
     <tr>
+        <td>size = **17039693**</td>
+        <td><size = **3421555**></td>
+        <td><size = **1759171**></td>
+        <td><size = **1264228**></td>
+    </tr>
+    <tr>
         <td><img src='./img/final_result.png'></td>
         <td><img src='./img/final_result_95.jpeg'></td>
         <td><img src='./img/final_result_85.jpeg'></td>
