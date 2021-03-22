@@ -6,7 +6,7 @@ This project aims to recover original image from '.tiff' via basic image process
 
 The following code read the input image using <code>imread</code> and output the size of the image using <code>size</code>
 
-```
+```matlab
 tiff = imread('.\data\banana_slug.tiff');
 tiff_size = size(tiff);
 ```
@@ -16,7 +16,8 @@ tiff_size = size(tiff);
 Linearization of the image is done by normalizing pixel values of the image while removing overexposed and supposedly black pixels.
 
 Originally, data type of pixels in the images are <code>uint16</code>, which needs to be coverted to <code>double</code> for linearization to take place. Since any pixel with values under 2047 and over 15000 are 0 and 1, respectively, the acceptable pixels have values in between 2047 and 12953. Hence, pixels are normalized with possible maximum value, which is 12953. After normalization, pixels with values greater than 1 are forcefully set as 1 while pixels with negative values are set as 0.
-```
+
+```matlab
 tiff_double = double(tiff);
 pixel_max = 15000;
 pixel_min = 2047;
@@ -52,7 +53,7 @@ In order to identify the correct bayer pattern, one must discover the correct po
     </tr>
 </table>
 
-```
+```matlab
 patch1 = linearized_tiff(1:2:end, 1:2:end);
 patch2 = linearized_tiff(1:2:end, 2:2:end);
 patch3 = linearized_tiff(2:2:end, 1:2:end);
@@ -106,7 +107,7 @@ When comparing these two images, the RGGB seemingly conveys more accurate portra
 
 When white balancing in gray world, 
 
-```
+```matlab
 % gray
 mean_red = mean(mean(rggb(:,:,1)));
 mean_green = mean(mean(rggb(:,:,2)));
@@ -118,7 +119,7 @@ gray_balanced_img = cat(3, gray_red, gray_green, gray_blue);
 ```
 
 
-```
+```matlab
 % white
 max_red = max(max(rggb(:,:,1)));
 max_green = max(max(rggb(:,:,2)));
@@ -146,7 +147,7 @@ The following images shows the result of white balancing the image in gray and w
 
 Using <code>interp2</code>, bilinear interpolation is performed for demosaicing the white balanced image. 
 
-```
+```matlab
 demosaic_red = interp2(gray_balanced_img(:,:,1));
 demosaic_green = interp2(gray_balanced_img(:,:,2));
 demosaic_blue = interp2(gray_balanced_img(:,:,3));
@@ -164,7 +165,7 @@ demosaic_img = cat(3, demosaic_red, demosaic_green, demosaic_blue);
 
 ## Brightness Adjustment and Gamma Correction
 
-```
+```matlab
 prebrightened_img = demosaic_img * 4;
 
 grayscale_img = rgb2gray(prebrightened_img);
@@ -186,7 +187,7 @@ end
 
 ## Compression
 
-```
+```matlab
 imwrite(gamma_corrected_img, 'final_result.png');
 imwrite(gamma_corrected_img, 'final_result_95.jpeg', 'quality', 95);
 imwrite(gamma_corrected_img, 'final_result_75.jpeg', 'quality', 75);
