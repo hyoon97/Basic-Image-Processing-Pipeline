@@ -38,7 +38,7 @@ The following imags show result of linearization. The right image is brightened 
     </tr>
     <tr>
         <td><img src='./img/linearized.png'></td>
-        <td><img src='./image/linearized_5.png'></td>
+        <td><img src='./img/linearized_5.png'></td>
     </tr>
 </table>
 
@@ -86,6 +86,17 @@ figure;
 imshow(min(1, rggb*5))
 ```
 When comparing these two images, the RGGB seemingly conveys more accurate portrait of hues than that of BGGR. 
+
+<table>
+    <tr>
+        <thbggr</th>
+        <th>rggb</th>
+    </tr>
+    <tr>
+        <td><img src='./img/bggr.png'></td>
+        <td><img src='./img/rggb.png'></td>
+    </tr>
+</table>
 
 ## White balancing
 
