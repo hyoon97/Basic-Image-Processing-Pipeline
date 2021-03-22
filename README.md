@@ -211,7 +211,7 @@ imwrite(gamma_corrected_img, 'final_result_5.jpeg', 'quality', 5);
 
 The following images shows that it hard to differentiate between the uncompressed and compressed image until the quality of image drops under 10. Images with quality under 10 fails to keep accurate information of color.   
     
-The file compression ratio is calculated by divideing the compressed image size (.png) by the uncompressed image size (.jpeg)
+The file compression ratio is calculated by divideing the compressed image size (.jpeg) by the uncompressed image size (.png)
 
 <table>
     <tr>
